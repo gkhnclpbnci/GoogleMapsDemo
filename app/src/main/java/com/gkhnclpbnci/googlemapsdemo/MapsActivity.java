@@ -1,37 +1,29 @@
 package com.gkhnclpbnci.googlemapsdemo;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements LocationListener,OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private static final float ZOOM_RATE = 15.0f ;
-    private double lat = -1, lng = -1;
+    // private static final float ZOOM_RATE = 15.0f ;
+    //private double lat = -1, lng = -1;
 
     private GoogleMap mMap;
-    private LocationManager locationManager;
+    //private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        startLocationManager();
+        /*startLocationManager();*/
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -50,8 +42,34 @@ public class MapsActivity extends FragmentActivity implements LocationListener,O
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        LatLng sydney = new LatLng(38.366125, 27.207569);
+        googleMap.addMarker(new MarkerOptions().position(sydney)
+                .title("İdeaktif"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,15));
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
 
+       // mMap = googleMap;
+      /*  LatLng iyte = new LatLng(38.318673, 26.639131);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        googleMap.setMyLocationEnabled(true);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(iyte,13));
+        googleMap.addMarker(new MarkerOptions()
+        .title("İYTe")
+        .snippet("Burası")
+        .position(iyte));*/
+
+
+
+/*
         // Add a marker in Sydney and move the camera
      //   LatLng sydney = new LatLng(-34, 151);
       //  mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
@@ -74,9 +92,10 @@ public class MapsActivity extends FragmentActivity implements LocationListener,O
 
         Toast.makeText(this, "Hata payı : "+errorRate, Toast.LENGTH_SHORT).show();
 
-        setMapCamera(location);
+        setMapCamera(location);*/
 
     }
+    /*
     private void setMapCamera(Location location) {
 
         lat = location.getLatitude();
@@ -94,8 +113,9 @@ public class MapsActivity extends FragmentActivity implements LocationListener,O
         mMap.animateCamera(CameraUpdateFactory.zoomTo(ZOOM_RATE), 2000, null);
 
     }
+    */
 
-    private Location getLastLocation() {
+   /* private Location getLastLocation() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -121,6 +141,8 @@ public class MapsActivity extends FragmentActivity implements LocationListener,O
 
 
     }
+    */
+    /*
     private void startLocationManager() {
 
         //TODO fix permission control
@@ -160,5 +182,5 @@ public class MapsActivity extends FragmentActivity implements LocationListener,O
     @Override
     public void onProviderDisabled(String s) {
 
-    }
+    }*/
 }
